@@ -5,12 +5,14 @@ import dj_database_url
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.environ.get('SECRET_KEY', 'your-secret-key-here')
+SECRET_KEY = os.environ.get('SECRET_KEY', '')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.environ.get('DEBUG', 'False') == 'True'
 
-ALLOWED_HOSTS = ['*']  # Render will handle this, but we allow all for flexibility
+port = int(os.environ.get("PORT", 8000))
+
+ALLOWED_HOSTS = ['https://fixmate-10.onrender.com']  # Render will handle this, but we allow all for flexibility
 
 # Application definition
 INSTALLED_APPS = [
@@ -151,3 +153,9 @@ REST_FRAMEWORK = {
         'rest_framework.permissions.IsAuthenticatedOrReadOnly',
     ],
 }
+
+SECURE_SSL_REDIRECT = True
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+APPEND_SLASH = True
+
+SECURE_SSL_REDIRECT = True
