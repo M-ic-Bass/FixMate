@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FixMate - Reviews & Ratings</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/reviews.css">
+</head>
+<body>
+    <header class="main-header">
+        <div class="logo">FixMate</div>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#providers">Providers</a></li>
+                <li><a href="dashboard/customer.html">Dashboard</a></li>
+                <li class="user-menu">
+                    <img src="images/user-icon.png" alt="User" class="user-icon">
+                    <div class="dropdown">
+                        <a href="#">Profile</a>
+                        <a href="#" id="logout-btn">Logout</a>
+                    </div>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="reviews-main">
+        <div class="reviews-container">
+            <div class="reviews-header">
+                <h1>Reviews & Ratings</h1>
+                <p>Share your experience and help others make informed decisions</p>
+            </div>
+
+            <div class="reviews-tabs">
+                <button class="tab-btn active" data-tab="my-reviews">My Reviews</button>
+                <button class="tab-btn" data-tab="pending-reviews">Pending Reviews</button>
+                <button class="tab-btn" data-tab="received-reviews">Reviews Received</button>
+                <button class="tab-btn" data-tab="write-review">Write Review</button>
+            </div>
+
+            <!-- My Reviews Tab -->
+            <div class="tab-content active" id="my-reviews">
+                <div class="section-header">
+                    <h2>My Reviews</h2>
+                    <div class="filter-controls">
+                        <select id="my-reviews-filter">
+                            <option value="all">All Reviews</option>
+                            <option value="recent">Most Recent</option>
+                            <option value="highest">Highest Rated</option>
+                            <option value="lowest">Lowest Rated</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="reviews-list" id="my-reviews-list">
+                    <!-- Reviews will be loaded here -->
+                </div>
+            </div>
+
+            <!-- Pending Reviews Tab -->
+            <div class="tab-content" id="pending-reviews">
+                <div class="section-header">
+                    <h2>Pending Reviews</h2>
+                    <p>Jobs you've completed that haven't been reviewed yet</p>
+                </div>
+                <div class="pending-reviews-list" id="pending-reviews-list">
+                    <!-- Pending reviews will be loaded here -->
+                </div>
+            </div>
+
+            <!-- Reviews Received Tab -->
+            <div class="tab-content" id="received-reviews">
+                <div class="section-header">
+                    <h2>Reviews Received</h2>
+                    <div class="rating-summary" id="rating-summary">
+                        <!-- Rating summary will be loaded here -->
+                    </div>
+                </div>
+                <div class="received-reviews-list" id="received-reviews-list">
+                    <!-- Received reviews will be loaded here -->
+                </div>
+            </div>
+
+            <!-- Write Review Tab -->
+            <div class="tab-content" id="write-review">
+                <div class="section-header">
+                    <h2>Write a Review</h2>
+                    <p>Share your experience with a service provider</p>
+                </div>
+                <div class="write-review-form">
+                    <form id="review-form">
+                        <div class="form-group">
+                            <label for="job-select">Select Job</label>
+                            <select id="job-select" required>
+                                <option value="">Choose a completed job...</option>
+                                <!-- Jobs will be loaded here -->
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Overall Rating</label>
+                            <div class="rating-input" id="overall-rating">
+                                <i class="far fa-star" data-rating="1"></i>
+                                <i class="far fa-star" data-rating="2"></i>
+                                <i class="far fa-star" data-rating="3"></i>
+                                <i class="far fa-star" data-rating="4"></i>
+                                <i class="far fa-star" data-rating="5"></i>
+                            </div>
+                            <input type="hidden" id="overall-rating-value" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Rate Specific Aspects</label>
+                            <div class="aspect-ratings">
+                                <div class="aspect-rating">
+                                    <span>Quality of Work</span>
+                                    <div class="rating-input" data-aspect="quality">
+                                        <i class="far fa-star" data-rating="1"></i>
+                                        <i class="far fa-star" data-rating="2"></i>
+                                        <i class="far fa-star" data-rating="3"></i>
+                                        <i class="far fa-star" data-rating="4"></i>
+                                        <i class="far fa-star" data-rating="5"></i>
+                                    </div>
+                                    <input type="hidden" name="quality_rating" required>
+                                </div>
+                                <div class="aspect-rating">
+                                    <span>Communication</span>
+                                    <div class="rating-input" data-aspect="communication">
+                                        <i class="far fa-star" data-rating="1"></i>
+                                        <i class="far fa-star" data-rating="2"></i>
+                                        <i class="far fa-star" data-rating="3"></i>
+                                        <i class="far fa-star" data-rating="4"></i>
+                                        <i class="far fa-star" data-rating="5"></i>
+                                    </div>
+                                    <input type="hidden" name="communication_rating" required>
+                                </div>
+                                <div class="aspect-rating">
+                                    <span>Timeliness</span>
+                                    <div class="rating-input" data-aspect="timeliness">
+                                        <i class="far fa-star" data-rating="1"></i>
+                                        <i class="far fa-star" data-rating="2"></i>
+                                        <i class="far fa-star" data-rating="3"></i>
+                                        <i class="far fa-star" data-rating="4"></i>
+                                        <i class="far fa-star" data-rating="5"></i>
+                                    </div>
+                                    <input type="hidden" name="timeliness_rating" required>
+                                </div>
+                                <div class="aspect-rating">
+                                    <span>Value for Money</span>
+                                    <div class="rating-input" data-aspect="value">
+                                        <i class="far fa-star" data-rating="1"></i>
+                                        <i class="far fa-star" data-rating="2"></i>
+                                        <i class="far fa-star" data-rating="3"></i>
+                                        <i class="far fa-star" data-rating="4"></i>
+                                        <i class="far fa-star" data-rating="5"></i>
+                                    </div>
+                                    <input type="hidden" name="value_rating" required>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="review-comment">Your Review</label>
+                            <textarea 
+                                id="review-comment" 
+                                name="comment" 
+                                rows="5" 
+                                placeholder="Share your experience with this provider..."
+                                required
+                            ></textarea>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="review-recommend">Would you recommend this provider?</label>
+                            <div class="recommendation-options">
+                                <label class="radio-option">
+                                    <input type="radio" name="recommend" value="yes" required>
+                                    <span>Yes, I would recommend</span>
+                                </label>
+                                <label class="radio-option">
+                                    <input type="radio" name="recommend" value="no">
+                                    <span>No, I would not recommend</span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="form-actions">
+                            <button type="submit" class="btn btn-primary">Submit Review</button>
+                            <button type="button" class="btn btn-outline" id="cancel-review">Cancel</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Review Detail Modal -->
+    <div class="modal" id="review-detail-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Review Details</h3>
+                <button class="close-btn" onclick="closeReviewDetailModal()">&times;</button>
+            </div>
+            <div class="modal-body" id="review-detail-content">
+                <!-- Review details will be loaded here -->
+            </div>
+        </div>
+    </div>
+
+    <footer class="main-footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>FixMate</h3>
+                <p>Connecting you with trusted handyman services in your area.</p>
+            </div>
+            <div class="footer-section">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="auth.html">Login</a></li>
+                    <li><a href="providers.html">Find Providers</a></li>
+                    <li><a href="dashboard/customer.html">Dashboard</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Contact Us</h4>
+                <p>Email: support@fixmate.com</p>
+                <p>Phone: (555) 123-4567</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 FixMate. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="js/reviews.js"></script>
+</body>
+</html>

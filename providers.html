@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FixMate - Find Service Providers</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <i class="fas fa-tools"></i>
+                <span>FixMate</span>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="index.html" class="nav-link">Home</a></li>
+                <li><a href="index.html#services" class="nav-link">Services</a></li>
+                <li><a href="providers.html" class="nav-link active">Find Providers</a></li>
+                <li><a href="index.html#about" class="nav-link">About</a></li>
+                <li><a href="index.html#contact" class="nav-link">Contact</a></li>
+            </ul>
+            <div class="nav-auth">
+                <a href="auth.html" class="btn btn-outline">Login</a>
+                <a href="auth.html?register=true" class="btn btn-primary">Sign Up</a>
+            </div>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Providers Header -->
+    <section class="providers-header">
+        <div class="container">
+            <h1>Find Trusted Service Providers</h1>
+            <p>Connect with verified, professional handymen and service providers in your area</p>
+        </div>
+    </section>
+
+    <!-- Search Section -->
+    <section class="search-section">
+        <div class="container">
+            <div class="search-container">
+                <div class="search-form">
+                    <div class="search-row">
+                        <div class="search-group">
+                            <i class="fas fa-search"></i>
+                            <input type="text" id="provider-search" placeholder="Search by name, service, or keyword...">
+                        </div>
+                        <div class="search-group">
+                            <select id="provider-category">
+                                <option value="">All Categories</option>
+                                <!-- Categories will be loaded dynamically -->
+                            </select>
+                        </div>
+                        <div class="search-group">
+                            <input type="text" id="provider-location" placeholder="City, State">
+                        </div>
+                        <button class="btn btn-primary" onclick="searchProviders()">Search</button>
+                    </div>
+                </div>
+                
+                <!-- Filters -->
+                <div class="filters-container">
+                    <div class="filter-group">
+                        <label>Price Range:</label>
+                        <div class="price-range-inputs">
+                            <input type="number" id="filter-min-price" placeholder="Min CFA" min="0" step="1">
+                            <span>-</span>
+                            <input type="number" id="filter-max-price" placeholder="Max CFA" min="0" step="1">
+                        </div>
+                    </div>
+                    <div class="filter-group">
+                        <label>Sort by:</label>
+                        <select id="sort-by">
+                            <option value="rating">Highest Rated</option>
+                            <option value="price">Price: Low to High</option>
+                            <option value="recent">Most Recent</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Providers Section -->
+    <section class="providers-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Service Providers</h2>
+                <div class="view-options">
+                    <button class="btn btn-outline active" onclick="setViewMode('grid')">
+                        <i class="fas fa-th"></i> Grid
+                    </button>
+                    <button class="btn btn-outline" onclick="setViewMode('list')">
+                        <i class="fas fa-list"></i> List
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Loading Spinner -->
+            <div id="loading-spinner" class="spinner" style="display: none;"></div>
+            
+            <!-- Results Count -->
+            <div id="results-count" class="results-count"></div>
+            
+            <!-- Providers Grid/List -->
+            <div id="providers-container" class="providers-grid">
+                <!-- Providers will be loaded here -->
+            </div>
+            
+            <!-- Pagination -->
+            <div id="pagination" class="pagination">
+                <!-- Pagination will be loaded here -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Provider Detail Modal -->
+    <div id="provider-modal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeProviderModal()">&times;</span>
+            <div id="provider-details">
+                <!-- Provider details will be loaded here -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>FixMate</h3>
+                    <p>Your trusted platform for connecting with professional handymen and service providers.</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="index.html#services">Services</a></li>
+                        <li><a href="providers.html">Find Providers</a></li>
+                        <li><a href="index.html#about">About</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Support</h3>
+                    <ul>
+                        <li><a href="index.html#contact">Contact</a></li>
+                        <li><a href="#">FAQ</a></li>
+                        <li><a href="#">Terms of Service</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Follow Us</h3>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 FixMate. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/providers.js"></script>
+</body>
+</html>

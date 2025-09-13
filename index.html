@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FixMate - Connect with Trusted Handymen</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <i class="fas fa-tools"></i>
+                <span>FixMate</span>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="#home" class="nav-link">Home</a></li>
+                <li><a href="#services" class="nav-link">Services</a></li>
+                <li><a href="#providers" class="nav-link">Find Providers</a></li>
+                <li><a href="#about" class="nav-link">About</a></li>
+                <li><a href="#contact" class="nav-link">Contact</a></li>
+            </ul>
+            <div class="nav-auth">
+                <a href="auth.html" class="btn btn-outline">Login</a>
+                <a href="auth.html?register=true" class="btn btn-primary">Sign Up</a>
+            </div>
+            <div class="hamburger" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="nav-menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+        
+        <!-- Mobile Navigation Menu -->
+        <div class="nav-menu-mobile">
+            <ul class="nav-menu-list">
+                <li><a href="#home" class="nav-link"></a></li>
+                <li><a href="#services" class="nav-link"></a></li>
+                <li><a href="#providers" class="nav-link"></a></li>
+                <li><a href="#about" class="nav-link"></a></li>
+                <li><a href="#contact" class="nav-link"></a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1>Find Trusted Handymen Near You</h1>
+            <p>Connect with verified, professional service providers for all your home repair and maintenance needs.</p>
+        </div>
+        <!-- <div class="hero-image">
+            <img src="images/hero-image.jpg" alt="Handyman working">
+        </div> -->
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="services">
+        <div class="container">
+            <h2 class="section-title">Our Services</h2>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">
+                        <img src="icons/fa-plumbing.png" alt="Plumbing" class="service-icon-img">
+                    </div>
+                    <h3>Plumbing</h3>
+                    <p>Expert plumbing services for repairs, installations, and maintenance.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <img src="icons/fa-bolt.png" alt="Electrical" class="service-icon-img">
+                    </div>
+                    <h3>Electrical</h3>
+                    <p>Professional electrical work from certified electricians.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <img src="icons/fa-hammer.png" alt="Carpentry" class="service-icon-img">
+                    </div>
+                    <h3>Carpentry</h3>
+                    <p>Custom carpentry and woodworking services for your home.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <img src="icons/fa-paint-roller.png" alt="Painting" class="service-icon-img">
+                    </div>
+                    <h3>Painting</h3>
+                    <p>Professional painting services for interior and exterior projects.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <img src="icons/fa-wrench.png" alt="General Repair" class="service-icon-img">
+                    </div>
+                    <h3>General Repair</h3>
+                    <p>Comprehensive repair services for all household needs.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <img src="icons/fa-home.png" alt="Home Maintenance" class="service-icon-img">
+                    </div>
+                    <h3>Home Maintenance</h3>
+                    <p>Regular maintenance services to keep your home in perfect condition.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works Section -->
+    <section class="how-it-works">
+        <div class="container">
+            <h2 class="section-title">How FixMate Works</h2>
+            <div class="steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <h3>Sign Up</h3>
+                    <p>Create your account as a customer or service provider.</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <h3>Post or Find Jobs</h3>
+                    <p>Customers post jobs, providers find opportunities.</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <h3>Connect & Chat</h3>
+                    <p>Discuss details through our real-time chat system.</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">4</div>
+                    <h3>Get Work Done</h3>
+                    <p>Complete the job and leave reviews for future customers.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Providers Section -->
+    <section id="providers" class="providers">
+        <div class="container">
+            <h2 class="section-title">Featured Providers</h2>
+            <div class="providers-grid" id="featured-providers">
+                <!-- Providers will be loaded here -->
+            </div>
+            <div class="text-center">
+                <a href="providers.html" class="btn btn-primary">View All Providers</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about">
+        <div class="container">
+            <div class="about-content">
+                <div class="about-text">
+                    <h2>About FixMate</h2>
+                    <p>FixMate is your trusted platform for connecting with professional handymen and service providers. We ensure that all our providers are verified, experienced, and ready to deliver quality service.</p>
+                    <p>Our mission is to make home maintenance and repairs simple, reliable, and accessible to everyone.</p>
+                    <div class="about-stats">
+                        <div class="stat">
+                            <h3>1000+</h3>
+                            <p>Verified Providers</p>
+                        </div>
+                        <div class="stat">
+                            <h3>5000+</h3>
+                            <p>Happy Customers</p>
+                        </div>
+                        <div class="stat">
+                            <h3>98%</h3>
+                            <p>Satisfaction Rate</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="about-image">
+                    <img src="images/about-image.jpg" alt="About FixMate">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <h2 class="section-title">Contact Us</h2>
+            <div class="contact-content">
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <i class="fas fa-phone"></i>
+                        <div>
+                            <h3>Phone</h3>
+                            <p>+1 (555) 123-4567</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-envelope"></i>
+                        <div>
+                            <h3>Email</h3>
+                            <p>support@fixmate.com</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <div>
+                            <h3>Address</h3>
+                            <p>123 Main Street, City, State 12345</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="contact-form">
+                    <form id="contact-form">
+                        <div class="form-group">
+                            <input type="text" id="contact-name" placeholder="Your Name" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="email" id="contact-email" placeholder="Your Email" required>
+                        </div>
+                        <div class="form-group">
+                            <textarea id="contact-message" placeholder="Your Message" rows="5" required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Send Message</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>FixMate</h3>
+                    <p>Your trusted platform for connecting with professional handymen and service providers.</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#services">Services</a></li>
+                        <li><a href="#providers">Find Providers</a></li>
+                        <li><a href="#about">About</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Support</h3>
+                    <ul>
+                        <li><a href="#contact">Contact</a></li>
+                        <li><a href="#">FAQ</a></li>
+                        <li><a href="#">Terms of Service</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Follow Us</h3>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 FixMate. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+</body>
+</html>
