@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FixMate - Chat</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/chat.css">
+</head>
+<body>
+    <header class="chat-header">
+        <div class="logo">FixMate</div>
+        <nav>
+            <ul>
+                <li><a href="../dashboard/customer.html">Dashboard</a></li>
+                <li><a href="../index.html#services">Services</a></li>
+                <li class="user-menu">
+                    <img src="../images/user-icon.png" alt="User" class="user-icon">
+                    <div class="dropdown">
+                        <a href="#">Profile</a>
+                        <a href="#" id="logout-btn">Logout</a>
+                    </div>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="chat-main">
+        <div class="chat-container">
+            <div class="chat-sidebar">
+                <h3>Conversations</h3>
+                <div class="conversation-list" id="conversation-list">
+                    <!-- Conversations will be loaded here -->
+                </div>
+            </div>
+
+            <div class="chat-content">
+                <div class="chat-header-info">
+                    <h2 id="chat-title">Select a conversation</h2>
+                    <div class="chat-status" id="chat-status">
+                        <span class="status-indicator offline"></span>
+                        <span>Offline</span>
+                    </div>
+                </div>
+
+                <div class="chat-messages" id="chat-messages">
+                    <div class="no-conversation-selected">
+                        <p>Select a conversation to start chatting</p>
+                    </div>
+                </div>
+
+                <div class="chat-input-container" id="chat-input-container" style="display: none;">
+                    <div class="chat-input-tools">
+                        <button type="button" class="tool-btn" id="attach-btn" title="Attach image">
+                            📎
+                        </button>
+                        <input type="file" id="image-input" accept="image/*" style="display: none;">
+                    </div>
+                    <div class="chat-input-wrapper">
+                        <textarea 
+                            id="message-input" 
+                            placeholder="Type your message..." 
+                            rows="1"
+                        ></textarea>
+                        <button type="button" class="send-btn" id="send-btn">
+                            Send
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Templates -->
+    <template id="conversation-template">
+        <div class="conversation-item">
+            <div class="conversation-avatar">
+                <img src="../images/default-avatar.png" alt="Avatar">
+            </div>
+            <div class="conversation-info">
+                <div class="conversation-header">
+                    <span class="conversation-name"></span>
+                    <span class="conversation-time"></span>
+                </div>
+                <div class="conversation-preview"></div>
+            </div>
+            <div class="conversation-status">
+                <span class="unread-count"></span>
+            </div>
+        </div>
+    </template>
+
+    <template id="message-template">
+        <div class="message">
+            <div class="message-avatar">
+                <img src="../images/default-avatar.png" alt="Avatar">
+            </div>
+            <div class="message-content">
+                <div class="message-header">
+                    <span class="message-sender"></span>
+                    <span class="message-time"></span>
+                </div>
+                <div class="message-text"></div>
+                <div class="message-image-container" style="display: none;">
+                    <img class="message-image" alt="Shared image">
+                </div>
+            </div>
+        </div>
+    </template>
+
+    <template id="own-message-template">
+        <div class="message own-message">
+            <div class="message-content">
+                <div class="message-header">
+                    <span class="message-time"></span>
+                </div>
+                <div class="message-text"></div>
+                <div class="message-image-container" style="display: none;">
+                    <img class="message-image" alt="Shared image">
+                </div>
+                <div class="message-status">
+                    <span class="read-status"></span>
+                </div>
+            </div>
+        </div>
+    </template>
+
+    <script src="../js/chat.js"></script>
+</body>
+</html>

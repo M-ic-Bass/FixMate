@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="csrf-token" content="{{ csrf_token }}">
+    <title>FixMate - Login / Register</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <i class="fas fa-tools"></i>
+                <span>FixMate</span>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="index.html" class="nav-link">Home</a></li>
+                <li><a href="index.html#services" class="nav-link">Services</a></li>
+                <li><a href="index.html#providers" class="nav-link">Find Providers</a></li>
+                <li><a href="index.html#about" class="nav-link">About</a></li>
+                <li><a href="index.html#contact" class="nav-link">Contact</a></li>
+            </ul>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Authentication Section -->
+    <section class="auth-section">
+        <div class="auth-container">
+            <div class="auth-tabs">
+                <button class="tab-btn active" onclick="switchTab('login')">Login</button>
+                <button class="tab-btn" onclick="switchTab('register')">Register</button>
+            </div>
+
+            <!-- Login Form -->
+            <div id="login-form" class="auth-form active">
+                <h2>Welcome Back</h2>
+                <p>Login to your FixMate account</p>
+                
+                <form id="login-form-element">
+                    <div class="form-group">
+                        <label for="login-email">Email Address</label>
+                        <input type="email" id="login-email" name="email" required>
+                        <div class="error" id="login-email-error"></div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="login-password">Password</label>
+                        <div class="password-input">
+                            <input type="password" id="login-password" name="password" required>
+                            <button type="button" class="toggle-password" onclick="togglePassword('login-password')">
+                                <i class="fas fa-eye"></i>
+                            </button>
+                        </div>
+                        <div class="error" id="login-password-error"></div>
+                    </div>
+                    
+                    <div class="form-options">
+                        <label class="checkbox-label">
+                            <input type="checkbox" id="remember-me">
+                            <span>Remember me</span>
+                        </label>
+                        <a href="#" class="forgot-password">Forgot Password?</a>
+                    </div>
+                    
+                    <button type="submit" class="btn btn-primary btn-full">Login</button>
+                </form>
+                
+                <div class="auth-divider">
+                    <span>or</span>
+                </div>
+                
+                <div class="social-login">
+                    <button class="btn btn-outline btn-full">
+                        <i class="fab fa-google"></i> Continue with Google
+                    </button>
+                    <button class="btn btn-outline btn-full">
+                        <i class="fab fa-facebook"></i> Continue with Facebook
+                    </button>
+                </div>
+            </div>
+
+            <!-- Register Form -->
+            <div id="register-form" class="auth-form">
+                <h2>Create Account</h2>
+                <p>Join FixMate and connect with trusted handymen</p>
+                
+                <form id="register-form-element">
+                    <div class="form-group">
+                        <label for="register-user-type">I am a</label>
+                        <select id="register-user-type" name="user_type" required>
+                            <option value="">Select User Type</option>
+                            <option value="customer">Customer</option>
+                            <option value="provider">Service Provider</option>
+                            <option value="admin">Administrator</option>
+                        </select>
+                        <div class="error" id="register-user-type-error"></div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="register-first-name">First Name</label>
+                            <input type="text" id="register-first-name" name="first_name" required>
+                            <div class="error" id="register-first-name-error"></div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="register-last-name">Last Name</label>
+                            <input type="text" id="register-last-name" name="last_name" required>
+                            <div class="error" id="register-last-name-error"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="register-email">Email Address</label>
+                        <input type="email" id="register-email" name="email" required>
+                        <div class="error" id="register-email-error"></div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="register-phone">Phone Number</label>
+                        <input type="tel" id="register-phone" name="phone" required>
+                        <div class="error" id="register-phone-error"></div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="register-password">Password</label>
+                        <div class="password-input">
+                            <input type="password" id="register-password" name="password" required>
+                            <button type="button" class="toggle-password" onclick="togglePassword('register-password')">
+                                <i class="fas fa-eye"></i>
+                            </button>
+                        </div>
+                        <div class="error" id="register-password-error"></div>
+                        <small class="password-hint">Password must be at least 8 characters long</small>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="register-confirm-password">Confirm Password</label>
+                        <div class="password-input">
+                            <input type="password" id="register-confirm-password" name="confirm_password" required>
+                            <button type="button" class="toggle-password" onclick="togglePassword('register-confirm-password')">
+                                <i class="fas fa-eye"></i>
+                            </button>
+                        </div>
+                        <div class="error" id="register-confirm-password-error"></div>
+                    </div>
+                    
+                    <!-- Provider-specific fields -->
+                    <div id="provider-fields" class="provider-fields" style="display: none;">
+                        <div class="form-group">
+                            <label for="register-business-name">Business Name</label>
+                            <input type="text" id="register-business-name" name="business_name">
+                            <div class="error" id="register-business-name-error"></div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="register-services">Services Offered</label>
+                            <select id="register-services" name="services" multiple>
+                                <option value="plumbing">Plumbing</option>
+                                <option value="electrical">Electrical</option>
+                                <option value="carpentry">Carpentry</option>
+                                <option value="painting">Painting</option>
+                                <option value="general">General Repair</option>
+                                <option value="maintenance">Home Maintenance</option>
+                            </select>
+                            <small>Hold Ctrl/Cmd to select multiple services</small>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="register-location">Service Location</label>
+                            <input type="text" id="register-location" name="location" placeholder="City, State">
+                            <div class="error" id="register-location-error"></div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="register-experience">Years of Experience</label>
+                            <input type="number" id="register-experience" name="experience" min="0" max="50">
+                            <div class="error" id="register-experience-error"></div>
+                        </div>
+                    </div>
+                    
+                    <!-- Admin-specific fields -->
+                    <div id="admin-fields" class="admin-fields" style="display: none;">
+                        <div class="form-group">
+                            <label for="register-admin-role">Admin Role</label>
+                            <select id="register-admin-role" name="admin_role">
+                                <option value="super_admin">Super Admin</option>
+                                <option value="content_admin">Content Admin</option>
+                                <option value="support_admin">Support Admin</option>
+                            </select>
+                            <small>Select your administrative role and permissions level</small>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="register-department">Department</label>
+                            <select id="register-department" name="department">
+                                <option value="management">Management</option>
+                                <option value="support">Customer Support</option>
+                                <option value="moderation">Content Moderation</option>
+                                <option value="technical">Technical</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="checkbox-label">
+                                <input type="checkbox" id="admin-terms" required>
+                                <span>I confirm I have the authority to create an admin account and will adhere to admin policies and procedures</span>
+                            </label>
+                            <div class="error" id="admin-terms-error"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="checkbox-label">
+                            <input type="checkbox" id="agree-terms" required>
+                            <span>I agree to the <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a></span>
+                        </label>
+                        <div class="error" id="agree-terms-error"></div>
+                    </div>
+                    
+                    <button type="submit" class="btn btn-primary btn-full">Create Account</button>
+                </form>
+                
+                <div class="auth-info">
+                    <p>By creating an account, you agree to wait for admin approval before accessing the platform.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>FixMate</h3>
+                    <p>Your trusted platform for connecting with professional handymen and service providers.</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="index.html#services">Services</a></li>
+                        <li><a href="index.html#providers">Find Providers</a></li>
+                        <li><a href="index.html#about">About</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Support</h3>
+                    <ul>
+                        <li><a href="index.html#contact">Contact</a></li>
+                        <li><a href="#">FAQ</a></li>
+                        <li><a href="#">Terms of Service</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Follow Us</h3>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 FixMate. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/auth.js"></script>
+</body>
+</html>

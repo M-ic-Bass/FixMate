@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FixMate - Provider Dashboard</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <i class="fas fa-tools"></i>
+                <span>FixMate</span>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="../index.html" class="nav-link">Home</a></li>
+                <li><a href="../index.html#services" class="nav-link">Services</a></li>
+                <li><a href="../providers.html" class="nav-link">Find Providers</a></li>
+                <li><a href="../chat/chat.html" class="nav-link">Messages</a></li>
+            </ul>
+            <div class="nav-auth">
+                <span class="user-welcome">Welcome, <span id="user-name">Provider</span></span>
+                <a href="#" class="btn btn-outline" onclick="logout()">Logout</a>
+            </div>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Dashboard Header -->
+    <div class="dashboard-header">
+        <div class="container">
+            <h1>Provider Dashboard</h1>
+            <p>Manage your services, jobs, and connect with customers</p>
+        </div>
+    </div>
+
+    <!-- Dashboard Navigation -->
+    <div class="container">
+        <div class="dashboard-nav">
+            <ul>
+                <li><a href="#" class="nav-link active" onclick="showSection('overview')">Overview</a></li>
+                <li><a href="#" class="nav-link" onclick="showSection('my-services')">My Services</a></li>
+                <li><a href="#" class="nav-link" onclick="showSection('find-jobs')">Find Jobs</a></li>
+                <li><a href="#" class="nav-link" onclick="showSection('my-jobs')">My Jobs</a></li>
+                <li><a href="#" class="nav-link" onclick="showSection('proposals')">Proposals</a></li>
+                <li><a href="#" class="nav-link" onclick="showSection('reviews')">Reviews</a></li>
+                <li><a href="#" class="nav-link" onclick="showSection('profile')">Profile</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Dashboard Content -->
+    <div class="container">
+        <div class="dashboard-content">
+            <!-- Overview Section -->
+            <div id="overview-section" class="dashboard-section active">
+                <h2>Overview</h2>
+                
+                <!-- Stats Cards -->
+                <div class="dashboard-stats">
+                    <div class="stat-card">
+                        <h3 id="active-jobs-count">0</h3>
+                        <p>Active Jobs</p>
+                    </div>
+                    <div class="stat-card">
+                        <h3 id="completed-jobs-count">0</h3>
+                        <p>Completed Jobs</p>
+                    </div>
+                    <div class="stat-card">
+                        <h3 id="pending-proposals-count">0</h3>
+                        <p>Pending Proposals</p>
+                    </div>
+                </div>
+
+                <!-- Recent Activity -->
+                <div class="recent-activity">
+                    <h3>Recent Activity</h3>
+                    <div id="recent-activity-list">
+                        <!-- Activity items will be loaded here -->
+                    </div>
+                </div>
+
+                <!-- Upcoming Jobs -->
+                <div class="upcoming-jobs">
+                    <h3>Upcoming Jobs</h3>
+                    <div id="upcoming-jobs-list">
+                        <!-- Upcoming jobs will be loaded here -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- My Services Section -->
+            <div id="my-services-section" class="dashboard-section">
+                <h2>My Services</h2>
+                
+                <div class="services-header">
+                    <button class="btn btn-primary" onclick="showAddServiceModal()">
+                        <i class="fas fa-plus"></i> Add Service
+                    </button>
+                </div>
+
+                <div id="services-list">
+                    <!-- Services will be loaded here -->
+                </div>
+            </div>
+
+            <!-- Find Jobs Section -->
+            <div id="find-jobs-section" class="dashboard-section">
+                <h2>Find Jobs</h2>
+                
+                <!-- Job Search Form -->
+                <div class="job-search-form">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <input type="text" id="job-search" placeholder="Search jobs by title or description...">
+                        </div>
+                        <div class="form-group">
+                            <select id="job-category-filter">
+                                <option value="">All Categories</option>
+                                <option value="plumbing">Plumbing</option>
+                                <option value="electrical">Electrical</option>
+                                <option value="carpentry">Carpentry</option>
+                                <option value="painting">Painting</option>
+                                <option value="general">General Repair</option>
+                                <option value="maintenance">Home Maintenance</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" id="job-location-filter" placeholder="Location...">
+                        </div>
+                        <div class="form-group">
+                            <select id="job-budget-filter">
+                                <option value="">Any Budget</option>
+                                <option value="0-100">$0 - $100</option>
+                                <option value="100-500">$100 - $500</option>
+                                <option value="500-1000">$500 - $1,000</option>
+                                <option value="1000+">$1,000+</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <button class="btn btn-primary" onclick="searchJobs()">Search</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="available-jobs-list">
+                    <!-- Available jobs will be loaded here -->
+                </div>
+            </div>
+
+            <!-- My Jobs Section -->
+            <div id="my-jobs-section" class="dashboard-section">
+                <h2>My Jobs</h2>
+                
+                <!-- Job Filters -->
+                <div class="job-filters">
+                    <select id="my-jobs-status-filter">
+                        <option value="">All Status</option>
+                        <option value="pending">Pending</option>
+                        <option value="accepted">Accepted</option>
+                        <option value="in_progress">In Progress</option>
+                        <option value="completed">Completed</option>
+                        <option value="cancelled">Cancelled</option>
+                    </select>
+                    <button class="btn btn-outline" onclick="loadMyJobs()">Refresh</button>
+                </div>
+
+                <div id="my-jobs-list">
+                    <!-- Jobs will be loaded here -->
+                </div>
+            </div>
+
+            <!-- Proposals Section -->
+            <div id="proposals-section" class="dashboard-section">
+                <h2>My Proposals</h2>
+                
+                <!-- Proposal Filters -->
+                <div class="proposal-filters">
+                    <select id="proposal-status-filter">
+                        <option value="">All Status</option>
+                        <option value="pending">Pending</option>
+                        <option value="accepted">Accepted</option>
+                        <option value="rejected">Rejected</option>
+                    </select>
+                    <button class="btn btn-outline" onclick="loadProposals()">Refresh</button>
+                </div>
+
+                <div id="proposals-list">
+                    <!-- Proposals will be loaded here -->
+                </div>
+            </div>
+
+            <!-- Reviews Section -->
+            <div id="reviews-section" class="dashboard-section">
+                <h2>Customer Reviews</h2>
+                
+                <div class="reviews-summary">
+                    <div class="review-summary-card">
+                        <h3>Average Rating</h3>
+                        <div class="rating-display">
+                            <span id="average-rating">4.5</span>
+                            <div id="average-stars">
+                                ${this.renderStars(4.5)}
+                            </div>
+                            <span id="total-reviews">(0 reviews)</span>
+                        </div>
+                    </div>
+                    <div class="review-summary-card">
+                        <h3>Response Rate</h3>
+                        <span id="response-rate">95%</span>
+                    </div>
+                    <div class="review-summary-card">
+                        <h3>On-Time Completion</h3>
+                        <span id="on-time-rate">98%</span>
+                    </div>
+                </div>
+
+                <div id="reviews-list">
+                    <!-- Reviews will be loaded here -->
+                </div>
+            </div>
+
+
+            <!-- Profile Section -->
+            <div id="profile-section" class="dashboard-section">
+                <h2>My Profile</h2>
+                
+                <form id="profile-form">
+                    <div class="profile-header">
+                        <div class="profile-image-section">
+                            <img id="profile-image-preview" src="../images/default-avatar.png" alt="Profile" class="profile-image">
+                            <button type="button" class="btn btn-outline" onclick="document.getElementById('profile-image').click()">
+                                <i class="fas fa-camera"></i> Change Photo
+                            </button>
+                            <input type="file" id="profile-image" name="profile_image" accept="image/*" style="display: none;">
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="business-name">Business Name</label>
+                            <input type="text" id="business-name" name="business_name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="first-name">First Name</label>
+                            <input type="text" id="first-name" name="first_name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="last-name">Last Name</label>
+                            <input type="text" id="last-name" name="last_name" required>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">Phone</label>
+                            <input type="tel" id="phone" name="phone" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="location">Service Area</label>
+                            <input type="text" id="location" name="location" placeholder="City, State" required>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="bio">Bio</label>
+                        <textarea id="bio" name="bio" rows="4" placeholder="Tell customers about your services and experience..."></textarea>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="experience-years">Years of Experience</label>
+                            <input type="number" id="experience-years" name="experience_years" min="0" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="availability">Availability Status</label>
+                            <select id="availability" name="is_available" required>
+                                <option value="true">Available</option>
+                                <option value="false">Busy</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="certifications">Certifications (comma-separated)</label>
+                        <input type="text" id="certifications" name="certifications" placeholder="e.g., Licensed Plumber, Electrician Certificate">
+                    </div>
+
+                    <button type="submit" class="btn btn-primary">Update Profile</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Add Service Modal -->
+    <div id="add-service-modal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeAddServiceModal()">&times;</span>
+            <h3>Add New Service</h3>
+            <form id="add-service-form">
+                <div class="form-group">
+                    <label for="service-title">Service Title</label>
+                    <input type="text" id="service-title" name="title" required>
+                </div>
+                <div class="form-group">
+                    <label for="service-category">Category</label>
+                    <select id="service-category" name="category" required>
+                        <option value="">Select category</option>
+                        <!-- Categories will be loaded dynamically -->
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="service-description">Description</label>
+                    <textarea id="service-description" name="description" rows="4" required placeholder="Describe your service in detail..."></textarea>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="service-price">Price ($)</label>
+                        <input type="number" id="service-price" name="price" min="0" step="0.01" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="service-price-type">Price Type</label>
+                        <select id="service-price-type" name="price_type" required>
+                            <option value="hourly">Hourly</option>
+                            <option value="fixed">Fixed Price</option>
+                            <option value="daily">Daily</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="service-duration">Estimated Duration</label>
+                    <input type="text" id="service-duration" name="estimated_duration" placeholder="e.g., 2 hours, 1 day, 3-5 days">
+                </div>
+                <div class="form-group">
+                    <label for="service-requirements">Requirements</label>
+                    <textarea id="service-requirements" name="requirements" rows="3" placeholder="What should the customer provide?"></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary">Add Service</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="../js/provider-dashboard.js"></script>
+</body>
+</html>
